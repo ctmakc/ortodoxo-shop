@@ -122,12 +122,18 @@
   document.querySelectorAll(".faq-item").forEach(function (item) {
     var q = item.querySelector(".faq-q");
     var a = item.querySelector(".faq-a");
+    q.setAttribute("aria-expanded", "false");
     q.addEventListener("click", function () {
       var open = item.classList.contains("open");
       document.querySelectorAll(".faq-item.open").forEach(function (o) {
-        if (o !== item) { o.classList.remove("open"); o.querySelector(".faq-a").style.maxHeight = null; }
+        if (o !== item) {
+          o.classList.remove("open");
+          o.querySelector(".faq-a").style.maxHeight = null;
+          o.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+        }
       });
       item.classList.toggle("open", !open);
+      q.setAttribute("aria-expanded", String(!open));
       a.style.maxHeight = open ? null : a.scrollHeight + "px";
       if (!open) track("faq_open", { q: q.textContent.trim().slice(0, 50) });
     });

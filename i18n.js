@@ -12,6 +12,7 @@ const I18N = {
   /* ===================== ESPAÑOL (default) ===================== */
   es: {
     nav_cta: "Dejar solicitud", nav_wa: "WhatsApp",
+    brand_tagline: "Velas ortodoxas",
     hero_eyebrow: "Cera de abeja natural · Envíos por España",
     hero_h1: "Velas ortodoxas para el hogar, <em>la comunidad y regalo</em>",
     hero_lead: "Velas a base de cera de abeja natural. Arden de forma uniforme, sin humo y sin gotear.",
@@ -161,6 +162,7 @@ const I18N = {
   /* ===================== ENGLISH ===================== */
   en: {
     nav_cta: "Place a request", nav_wa: "WhatsApp",
+    brand_tagline: "Orthodox candles",
     hero_eyebrow: "Natural beeswax · Delivery across Spain",
     hero_h1: "Orthodox candles for home, <em>community and gift</em>",
     hero_lead: "Candles made with natural beeswax. They burn evenly, without soot and without dripping.",
@@ -310,6 +312,7 @@ const I18N = {
   /* ===================== РУССКИЙ ===================== */
   ru: {
     nav_cta: "Оставить заявку", nav_wa: "WhatsApp",
+    brand_tagline: "Православные свечи",
     hero_eyebrow: "Натуральный пчелиный воск · Доставка по Испании",
     hero_h1: "Православные свечи для дома, <em>общины и подарка</em>",
     hero_lead: "Свечи на основе натурального пчелиного воска. Горят ровно, не коптят и не текут.",
@@ -459,6 +462,7 @@ const I18N = {
   /* ===================== ROMÂNĂ ===================== */
   ro: {
     nav_cta: "Trimite o cerere", nav_wa: "WhatsApp",
+    brand_tagline: "Lumânări ortodoxe",
     hero_eyebrow: "Ceară de albine naturală · Livrare în toată Spania",
     hero_h1: "Lumânări ortodoxe pentru casă, <em>comunitate și cadou</em>",
     hero_lead: "Lumânări pe bază de ceară de albine naturală. Ard uniform, fără fum și fără să curgă.",
@@ -608,6 +612,7 @@ const I18N = {
   /* ===================== УКРАЇНСЬКА ===================== */
   uk: {
     nav_cta: "Залишити заявку", nav_wa: "WhatsApp",
+    brand_tagline: "Православні свічки",
     hero_eyebrow: "Натуральний бджолиний віск · Доставка по Іспанії",
     hero_h1: "Православні свічки для дому, <em>громади та подарунка</em>",
     hero_lead: "Свічки на основі натурального бджолиного воску. Горять рівно, не коптять і не течуть.",
