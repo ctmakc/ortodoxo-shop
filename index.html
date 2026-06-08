@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ortodoxo Shop — Православные восковые свечи · Доставка по Испании</title>
 <meta name="description" content="Православные свечи на основе натурального пчелиного воска. Горят ровно, не коптят и не текут. Доставка по всей Испании.">
@@ -18,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Preload LCP hero image -->
-<link rel="preload" as="image" href="assets/real-5.webp" type="image/webp">
+<link rel="preload" as="image" imagesrcset="assets/real-5-sm.webp 420w, assets/real-5.webp 840w" imagesizes="(max-width:640px) 420px, 840px" type="image/webp">
 <!-- Preload critical fonts (eliminates CLS from font swap) -->
 <link rel="preload" as="font" href="assets/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/xn7gYHE41ni1AdIRggexSg.woff2" type="font/woff2" crossorigin>
@@ -94,7 +95,7 @@
       <div class="candle-stage">
         <div class="ornament" aria-hidden="true"></div>
         <picture>
-          <source srcset="assets/real-5.webp" type="image/webp">
+          <source media="(max-width:640px)" srcset="assets/real-5-sm.webp" type="image/webp"><source srcset="assets/real-5.webp" type="image/webp">
           <img class="hero-img" src="assets/real-5.jpg" alt="Православная восковая свеча с живым пламенем" width="420" height="525" loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </div>
