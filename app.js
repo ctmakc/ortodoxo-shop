@@ -45,6 +45,14 @@
       var v = dict[el.getAttribute("data-i18n-ph")];
       if (v != null) el.setAttribute("placeholder", v);
     });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n-aria")];
+      if (v != null) el.setAttribute("aria-label", v);
+    });
+    // document metadata (title + meta description) per language
+    if (dict.doc_title) document.title = dict.doc_title;
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && dict.doc_desc) metaDesc.setAttribute("content", dict.doc_desc);
     // units in specs table (min / cm differ by language)
     var u = UNITS[lang] || UNITS.es;
     document.querySelectorAll("[data-u]").forEach(function (el) {
@@ -205,18 +213,51 @@
         track(eventName + "_invalid", {});
         return;
       }
-      // gather purpose (radio) if any
-      var purpose = form.querySelector('input[name="purpose"]:checked');
-      track(eventName, {
-        purpose: purpose ? purpose.value : undefined,
-        // NOTE: connect real submission (Telegram Bot API / email webhook) here
+      // gather fields (inputs carry name="" attributes)
+      var data = { form: eventName, lang: window.__lang || "es" };
+      form.querySelectorAll("input, textarea, select").forEach(function (inp) {
+        if (!inp.name) return;
+        if (inp.type === "radio" && !inp.checked) return;
+        var v = (inp.value || "").trim();
+        if (v) data[inp.name] = v;
       });
-      // show thank-you state
-      card.classList.add("sent");
-      var thanks = card.querySelector(".thanks");
-      if (thanks) thanks.classList.add("show");
-      var y = card.getBoundingClientRect().top + window.scrollY - 90;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      var errEl = form.querySelector(".form-err");
+      if (errEl) errEl.classList.remove("show");
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        track(eventName, { purpose: data.purpose });
+        // show thank-you state
+        card.classList.add("sent");
+        var thanks = card.querySelector(".thanks");
+        if (thanks) thanks.classList.add("show");
+        var y = card.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }).catch(function () {
+        // submission failed — keep the form, offer direct contact instead
+        track(eventName + "_error", {});
+        if (btn) btn.disabled = false;
+        if (!errEl) {
+          errEl = document.createElement("p");
+          errEl.className = "form-err";
+          (form.querySelector(".form-body") || form).appendChild(errEl);
+        }
+        var dict = (typeof I18N !== "undefined" && (I18N[window.__lang] || I18N.es)) || {};
+        errEl.textContent = dict.form_err || "No se pudo enviar la solicitud. Escríbenos directamente: ";
+        var link = document.createElement("a");
+        link.href = "https://t.me/ortodoxoshop";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Telegram";
+        errEl.appendChild(document.createTextNode(" "));
+        errEl.appendChild(link);
+        errEl.classList.add("show");
+      });
     });
   }
 

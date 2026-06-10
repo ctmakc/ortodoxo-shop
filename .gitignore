@@ -1,3 +1,5 @@
 .vercel
 screenshots/
 uploads/
+.env
+.env.local
