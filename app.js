@@ -15,7 +15,6 @@
     // --- Facebook Pixel placeholder ---
     // if (window.fbq) fbq('trackCustom', event, params || {});
     // --- Conversions API would mirror this server-side ---
-    console.debug("[track]", event, params || {});
   }
   window.OrtoTrack = track;
 
