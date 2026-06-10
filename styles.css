@@ -638,6 +638,12 @@ section{ position:relative; }
 .thanks p{ margin-top:10px; color:var(--ink-soft); max-width:34em; margin-inline:auto; }
 .thanks .tg-links{ margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
+/* submit failure notice */
+.form-err{ display:none; margin-top:14px; font-size:.9rem; color:var(--bordo); text-align:center; }
+.form-err.show{ display:block; }
+.form-err a{ text-decoration:underline; font-weight:600; }
+.cb-form .form-err{ color:#ffd9b0; }
+
 /* form section split */
 .form-split{ display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(28px,5vw,60px); align-items:start; }
 
